@@ -57,10 +57,11 @@ jacocoTestReport {
 sonarqube {
     properties {
         property "sonar.projectKey", "sonarqube-jacoco-configuration"
-        property "sonar.projectName", "SonarQube JaCoCo Configuration"
+        property "sonar.projectName", "sonarqube-jacoco-configuration"
         property "sonar.host.url", "http://localhost:9000"
-        property "sonar.login", sonarToken
+        property "sonar.java.binaries", "build"
         property "sonar.coverage.jacoco.xmlReportPaths",
-                "${buildDir}/reports/jacoco/test/jacocoTestReport.xml"
+                "build/reports/jacoco/test/jacocoTestReport.xml"
+        property "sonar.scm.provider", "git"
     }
 }
