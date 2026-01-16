@@ -8,7 +8,7 @@ plugins {
 
 group = 'com.xworkz'
 version = '0.0.1-SNAPSHOT'
-description = 'SonarQube JaCoCo Configuration'
+description = 'sonarqube JaCoCo configuration'
 
 java {
     toolchain {
@@ -26,23 +26,17 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-mail'
 
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
-    runtimeOnly 'com.mysql:mysql-connector-j'
-
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
-    finalizedBy jacocoTestReport
-}
-
-jacoco {
-    toolVersion = "0.8.11"
 }
 
 jacocoTestReport {
@@ -50,7 +44,6 @@ jacocoTestReport {
     reports {
         xml.required = true
         html.required = true
-        csv.required = false
     }
 }
 

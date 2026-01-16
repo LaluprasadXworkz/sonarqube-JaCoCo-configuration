@@ -10,18 +10,17 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Checkout code
+      - name: Checkout source
         uses: actions/checkout@v4
 
-      - name: Set up JDK 17
+      - name: Set up Java 17
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
-          java-version: '17'
+          distribution: temurin
+          java-version: 17
 
-      - name: Build, Test, JaCoCo, Sonar
+      - name: Build, Test, JaCoCo, SonarQube
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          ./gradlew.bat clean test jacocoTestReport sonar `
-          -Dsonar.token=$Env:SONAR_TOKEN
+          gradlew.bat clean test jacocoTestReport sonar
