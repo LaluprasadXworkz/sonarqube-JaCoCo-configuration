@@ -2,7 +2,7 @@ name: SonarQube Analysis
 
 on:
   push:
-    branches: [ "Dream-01" ]
+    branches: [ "main" ]
   pull_request:
 
 jobs:
@@ -19,12 +19,9 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Grant execute permission
-        run: chmod +x gradlew
-
       - name: Build, Test, JaCoCo, Sonar
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          ./gradlew clean test jacocoTestReport sonar \
-          -Dsonar.token=$SONAR_TOKEN
+          ./gradlew.bat clean test jacocoTestReport sonar `
+          -Dsonar.token=$Env:SONAR_TOKEN
